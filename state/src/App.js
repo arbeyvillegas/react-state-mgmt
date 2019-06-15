@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ProductsPage from './pages/Products';
-import CartPage from './pages/Cart';
-import MainNavigation from './components/MainNavigation';
+import {Products, Cart, MainNavigation} from './components';
 import './App.css';
 
 class App extends Component {
@@ -11,8 +9,8 @@ class App extends Component {
     this.addProductToCart = this.addProductToCart.bind(this);
     this.removeProductFromCart = this.removeProductFromCart.bind(this);
     this.cartItemCount = this.cartItemCount.bind(this);
-    this.renderCartPage = this.renderCartPage.bind(this);
-    this.renderProductsPage = this.renderProductsPage.bind(this); 
+    this.renderCartPage = this.renderCart.bind(this);
+    this.renderProductsPage = this.renderProducts.bind(this); 
     this.changeNavigationOption = this.changeNavigationOption.bind(this);
   }
 
@@ -76,25 +74,25 @@ class App extends Component {
     this.setState({activeOption: option});
   }
 
-  renderProductsPage() {
-    return <ProductsPage products={this.state.products} addProductToCart={this.addProductToCart}/>;
+  renderProducts() {
+    return <Products products={this.state.products} addProductToCart={this.addProductToCart}/>;
   }
 
-  renderCartPage() {
-    return <CartPage cartItems={this.state.cart} removeProductFromCart={this.removeProductFromCart}/>;
+  renderCart() {
+    return <Cart cartItems={this.state.cart} removeProductFromCart={this.removeProductFromCart}/>;
   }
 
   render() {
     let component;
     if(this.state.activeOption === 'products') {
-      component = this.renderProductsPage();
+      component = this.renderProducts();
     } else {
-      component = this.renderCartPage();
+      component = this.renderCart();
     }
 
     return (
       <React.Fragment>
-        <MainNavigation cartItemNumber={this.cartItemCount()} changeNavigationOption={this.changeNavigationOption}/>
+        <MainNavigation cartItemNumber={this.cartItemCount()} activeOption={this.state.activeOption} changeNavigationOption={this.changeNavigationOption}/>
         {component}
       </React.Fragment>
     );

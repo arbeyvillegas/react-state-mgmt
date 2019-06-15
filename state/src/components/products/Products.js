@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Products.css';
 
-export default class ProductsPage extends Component {
+export class Products extends Component {
   render() {
     return (
       <main className="products">

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './Cart.css';
 
-export default class CartPage extends Component {
+export class Cart extends Component {
   render() {
     return (
       <main className="cart">
-        {this.props.cartItems.length <= 0 && <p>No Item in the Cart!</p>}
+        {this.props.cartItems.length <= 0 && <p>There is no items in the cart!</p>}
         <ul>
           {this.props.cartItems.map(cartItem => (
             <li key={cartItem.id}>

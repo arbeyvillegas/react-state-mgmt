@@ -31,10 +31,15 @@
   text-decoration: none;
   color: white;
   border-radius: 5px;
+  font-size: x-large;
 }
 
 .main-navigation button:hover,
 .main-navigation button:active {
   background: white;
   color: #00179b;
+}
+
+.main-navigation button.selected {
+  color: darkgrey;
 }
