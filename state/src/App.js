@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Products, Cart, MainNavigation} from './components';
+import { Products, Cart, MainNavigation } from './components';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
     this.removeProductFromCart = this.removeProductFromCart.bind(this);
     this.cartItemCount = this.cartItemCount.bind(this);
     this.renderCartPage = this.renderCart.bind(this);
-    this.renderProductsPage = this.renderProducts.bind(this); 
+    this.renderProductsPage = this.renderProducts.bind(this);
     this.changeNavigationOption = this.changeNavigationOption.bind(this);
   }
 
@@ -28,40 +28,40 @@ class App extends Component {
   }
 
   addProductToCart(product) {
-      const updatedCart = [...this.state.cart];
-      const updatedItemIndex = updatedCart.findIndex(
-        item => item.id === product.id
-      );
+    const updatedCart = [...this.state.cart];
+    const updatedItemIndex = updatedCart.findIndex(
+      item => item.id === product.id
+    );
 
-      if (updatedItemIndex < 0) {
-        updatedCart.push({ ...product, quantity: 1 });
-      } else {
-        const updatedItem = {
-          ...updatedCart[updatedItemIndex]
-        };
-        updatedItem.quantity++;
-        updatedCart[updatedItemIndex] = updatedItem;
-      }
-      this.setState({cart: updatedCart});
-  }
-
-  removeProductFromCart(productId) {
-      const updatedCart = [...this.state.cart];
-      const updatedItemIndex = updatedCart.findIndex(
-        item => item.id === productId
-      );
-
+    if (updatedItemIndex < 0) {
+      updatedCart.push({ ...product, quantity: 1 });
+    } else {
       const updatedItem = {
         ...updatedCart[updatedItemIndex]
       };
-      updatedItem.quantity--;
-      if (updatedItem.quantity <= 0) {
-        updatedCart.splice(updatedItemIndex, 1);
-      } else {
-        updatedCart[updatedItemIndex] = updatedItem;
-      }
+      updatedItem.quantity++;
+      updatedCart[updatedItemIndex] = updatedItem;
+    }
+    this.setState({ cart: updatedCart });
+  }
 
-      this.setState({cart: updatedCart});
+  removeProductFromCart(productId) {
+    const updatedCart = [...this.state.cart];
+    const updatedItemIndex = updatedCart.findIndex(
+      item => item.id === productId
+    );
+
+    const updatedItem = {
+      ...updatedCart[updatedItemIndex]
+    };
+    updatedItem.quantity--;
+    if (updatedItem.quantity <= 0) {
+      updatedCart.splice(updatedItemIndex, 1);
+    } else {
+      updatedCart[updatedItemIndex] = updatedItem;
+    }
+
+    this.setState({ cart: updatedCart });
   }
 
   cartItemCount() {
@@ -71,20 +71,20 @@ class App extends Component {
   }
 
   changeNavigationOption(option) {
-    this.setState({activeOption: option});
+    this.setState({ activeOption: option });
   }
 
   renderProducts() {
-    return <Products products={this.state.products} addProductToCart={this.addProductToCart}/>;
+    return <Products products={this.state.products} addProductToCart={this.addProductToCart} />;
   }
 
   renderCart() {
-    return <Cart cartItems={this.state.cart} removeProductFromCart={this.removeProductFromCart}/>;
+    return <Cart cartItems={this.state.cart} removeProductFromCart={this.removeProductFromCart} />;
   }
 
   render() {
     let component;
-    if(this.state.activeOption === 'products') {
+    if (this.state.activeOption === 'products') {
       component = this.renderProducts();
     } else {
       component = this.renderCart();
@@ -92,8 +92,10 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <MainNavigation cartItemNumber={this.cartItemCount()} activeOption={this.state.activeOption} changeNavigationOption={this.changeNavigationOption}/>
-        {component}
+        <MainNavigation cartItemNumber={this.cartItemCount()} activeOption={this.state.activeOption} changeNavigationOption={this.changeNavigationOption} />
+        <div className="content">
+          {component}
+        </div>
       </React.Fragment>
     );
   }

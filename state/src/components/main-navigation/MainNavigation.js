@@ -2,7 +2,7 @@ import React from 'react';
 import './MainNavigation.css';
 
 export const MainNavigation = props => (
-  <header className="main-navigation">
+  <div className="main-navigation">
     <nav>
       <ul>
         <li>
@@ -13,5 +13,5 @@ export const MainNavigation = props => (
         </li>
       </ul>
     </nav>
-  </header>
+  </div>
 );
