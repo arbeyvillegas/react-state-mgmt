@@ -1,0 +1,41 @@
+.add-product {
+    width: 30rem;
+    max-width: 90%;
+    margin: 2rem auto;
+    border: 2px solid #00179b;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.add-product div {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.add-product label{
+    font-size: x-large;
+    font-weight: bold;
+    width: 25%;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+.add-product input{
+    font-size: x-large;
+    width: 70%;
+}
+
+.add-product button {
+    font-size: larger;
+    margin-right: 3px;
+    width: 20%;
+}
+
+.add-product .button-container {
+    display: flex;
+    justify-content: center;
+}
+

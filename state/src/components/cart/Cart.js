@@ -5,7 +5,7 @@ export class Cart extends Component {
   render() {
     return (
       <main className="cart">
-        {this.props.cartItems.length <= 0 && <p>There is no items in the cart!</p>}
+        {this.props.cartItems.length <= 0 && <p>There are no items in the cart!</p>}
         <ul>
           {this.props.cartItems.map(cartItem => (
             <li key={cartItem.id}>

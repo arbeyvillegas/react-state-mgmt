@@ -23,7 +23,7 @@ export class Products extends Component {
   render() {
     const component = this.state.activeProductOption === 'product-list' ?
       <ProductList {...this.props} onNewProductClick={this.changeActiveProductOption.bind(this, 'add-product')} /> :
-      <AddProduct onCancel={this.changeActiveProductOption.bind(this, 'product-list')} />
+      <AddProduct onCancel={this.changeActiveProductOption.bind(this, 'product-list')} onSave={this.props.addProduct}/>
     return (
       <React.Fragment>
         {component}

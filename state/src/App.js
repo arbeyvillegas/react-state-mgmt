@@ -12,15 +12,16 @@ class App extends Component {
     this.renderCartPage = this.renderCart.bind(this);
     this.renderProductsPage = this.renderProducts.bind(this);
     this.changeNavigationOption = this.changeNavigationOption.bind(this);
+    this.addProduct = this.addProduct.bind(this);
   }
 
   getInitialState() {
     return {
       products: [
-        { id: 'p1', title: 'Gaming Mouse', price: 29.99 },
-        { id: 'p2', title: 'Harry Potter 3', price: 9.99 },
-        { id: 'p3', title: 'Used plastic bottle', price: 0.99 },
-        { id: 'p4', title: 'Half-dried plant', price: 2.99 }
+        { id: 1, title: 'Gaming Mouse', price: 29.99 },
+        { id: 2, title: 'Harry Potter 3', price: 9.99 },
+        { id: 3, title: 'Used plastic bottle', price: 0.99 },
+        { id: 4, title: 'Half-dried plant', price: 2.99 }
       ],
       cart: [],
       activeOption: 'products'
@@ -64,6 +65,18 @@ class App extends Component {
     this.setState({ cart: updatedCart });
   }
 
+  addProduct(product) {
+    const updatedProducts = [...this.state.products];
+    updatedProducts.push({ ...product, id: this.nextProductId() });
+    this.setState({ products: updatedProducts });
+  }
+
+  nextProductId() {
+    const ids = this.state.products.map(product => product.id);
+    const maxId = Math.max(...ids);
+    return (maxId + 1);
+  }
+
   cartItemCount() {
     return this.state.cart.reduce((count, curItem) => {
       return count + curItem.quantity;
@@ -75,7 +88,7 @@ class App extends Component {
   }
 
   renderProducts() {
-    return <Products products={this.state.products} addProductToCart={this.addProductToCart} />;
+    return <Products products={this.state.products} addProductToCart={this.addProductToCart} addProduct={this.addProduct}/>;
   }
 
   renderCart() {

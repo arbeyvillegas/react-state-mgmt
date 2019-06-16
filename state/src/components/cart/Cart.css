@@ -2,6 +2,7 @@
   width: 50rem;
   max-width: 90%;
   margin: 2rem auto;
+  height: 100%;
 }
 
 .cart p {
@@ -14,6 +15,8 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 90%;
+  overflow-y: auto;
 }
 
 .cart li {
