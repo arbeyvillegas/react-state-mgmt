@@ -38,7 +38,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  addProductToCart: product => dispatch(addProductToCart(product))
+  return {
+    addProductToCart: product => dispatch(addProductToCart(product))
+  }
 };
 
 export default connect(

@@ -13,15 +13,16 @@ const initialState = {
 
 const shopReducer = (state = initialState, action) => {
     let updatedCart;
+    let updatedItemIndex;
     switch (action.type) {
         case ADD_PRODUCT_TO_CART:
             updatedCart = [...state.cart];
-            const updatedItemIndex = updatedCart.findIndex(
-                item => item.id === action.payload.id
+            updatedItemIndex = updatedCart.findIndex(
+                item => item.id === action.product.id
             );
 
             if (updatedItemIndex < 0) {
-                updatedCart.push({ ...action.payload, quantity: 1 });
+                updatedCart.push({ ...action.product, quantity: 1 });
             } else {
                 const updatedItem = {
                     ...updatedCart[updatedItemIndex]
@@ -29,11 +30,11 @@ const shopReducer = (state = initialState, action) => {
                 updatedItem.quantity++;
                 updatedCart[updatedItemIndex] = updatedItem;
             }
-            return updatedCart;
+            return {...state, cart: updatedCart};
         case REMOVE_PRODUCT_FROM_CART:
             updatedCart = [...state.cart];
-            const updatedItemIndex = updatedCart.findIndex(
-                item => item.id === action.payload.productId
+            updatedItemIndex = updatedCart.findIndex(
+                item => item.id === action.productId
             );
 
             const updatedItem = {
@@ -45,12 +46,15 @@ const shopReducer = (state = initialState, action) => {
             } else {
                 updatedCart[updatedItemIndex] = updatedItem;
             }
-            return updatedCart;
+            return {...state, cart: updatedCart};
         case ADD_PRODUCT:
             const updatedProducts = [...state.products];
-            return updatedProducts.push({ ...action.payload, id: nextProductId(state) });
+            const newProductId = nextProductId(state);
+            const newProduct = { ...action.product, id: newProductId };
+            updatedProducts.push(newProduct);
+            return {...state, products: updatedProducts};
         case CHANGE_NAVIGATION_OPTION:
-            return { ...state, activeOption: action.payload };
+            return { ...state, activeOption: action.option };
         default:
             return state;
     }

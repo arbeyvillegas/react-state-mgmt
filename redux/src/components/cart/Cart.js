@@ -42,10 +42,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  removeProductFromCart: productId => dispatch(removeProductFromCart(productId))
+  return {
+    removeProductFromCart: productId => dispatch(removeProductFromCart(productId))
+  }
 };
 
-export connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Cart);

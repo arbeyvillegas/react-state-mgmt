@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AddProduct } from './add-product/AddProduct';
-import { ProductList } from './product-list/ProductList';
+import ProductList from './product-list/ProductList';
 
 import './Products.css';
 
@@ -36,7 +36,9 @@ class Products extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  addProduct: product => dispatch(addProduct(product))
+  return {
+    addProduct: product => dispatch(addProduct(product))
+  }
 };
 
 export default connect(

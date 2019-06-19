@@ -10,26 +10,37 @@ const MainNavigation = props => (
     <nav>
       <ul>
         <li>
-          <button onClick={props.changeNavigationOption.bind(null, 'products')} className={props.activeOption === 'products' ? 'selected': null}>Products</button>
+          <button
+            onClick={props.changeNavigationOption.bind(null, 'products')}
+            className={props.activeOption === 'products' ? 'selected' : null}
+          >
+            Products
+          </button>
         </li>
         <li>
-          <button onClick={props.changeNavigationOption.bind(null, 'cart')}  className={props.activeOption === 'cart' ? 'selected': null}>Cart ({props.cartItemNumber})</button>
+          <button
+            onClick={props.changeNavigationOption.bind(null, 'cart')}
+            className={props.activeOption === 'cart' ? 'selected' : null}
+          >
+            Cart ({props.cartItemNumber})
+          </button>
         </li>
       </ul>
     </nav>
   </div>
 );
 
-
 const mapStateToProps = state => {
   return {
     activeOption: selectors.getActiveOption(state),
-    cartItemNumber: selectors.getCartItemCount(state),
-  }
+    cartItemNumber: selectors.getCartItemCount(state)
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  changeNavigationOption: option => dispatch(changeNavigationOption(option))
+  return {
+    changeNavigationOption: option => dispatch(changeNavigationOption(option))
+  };
 };
 
 export default connect(
