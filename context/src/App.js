@@ -109,6 +109,7 @@ class App extends Component {
         value={{
           products: this.state.products,
           cartItems: this.state.cart,
+          activeOption: this.state.activeOption,
           cartItemNumber: this.cartItemCount(),
           addProductToCart: this.addProductToCart,
           removeProductFromCart: this.removeProductFromCart,
