@@ -3,7 +3,7 @@ import { Products } from './components/products/Products';
 import { Cart } from './components/cart/Cart';
 import { MainNavigation } from './components/main-navigation/MainNavigation';
 import './App.css';
-import appContext from './context/app-context';
+import AppContext from './context/app-context';
 
 class App extends Component {
   constructor(props) {
@@ -107,7 +107,7 @@ class App extends Component {
     }
 
     return (
-      <appContext.Provider
+      <AppContext.Provider
         value={{
           products: this.state.products,
           cartItems: this.state.cart,
@@ -124,7 +124,7 @@ class App extends Component {
             {component}
           </div>
         </React.Fragment>
-      </appContext.Provider>
+      </AppContext.Provider>
     );
   }
 }

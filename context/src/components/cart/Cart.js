@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './Cart.css';
-import appContext from '../../context/app-context';
+import AppContext from '../../context/app-context';
 
 export class Cart extends Component {
-  static contextType = appContext;
+  static contextType = AppContext;
   render() {
     return (
       <main className="cart">

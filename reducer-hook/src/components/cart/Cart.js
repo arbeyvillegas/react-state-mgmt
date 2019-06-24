@@ -4,7 +4,6 @@ import AppContext from '../../context/app-context';
 
 const Cart = () => {
   const {cart, removeProductFromCart} = useContext(AppContext);
-
   return (
     <main className="cart">
       {cart.length <= 0 && <p>There are no items in the cart!</p>}

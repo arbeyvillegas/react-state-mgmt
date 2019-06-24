@@ -1,37 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Cart.css';
 
 import { connect } from 'react-redux';
 import { removeProductFromCart } from '../../store/actions';
 import * as selectors from '../../store/selectors';
 
-class Cart extends Component {
-  render() {
-    return (
-      <main className="cart">
-        {this.props.cartItems.length <= 0 && <p>There are no items in the cart!</p>}
-        <ul>
-          {this.props.cartItems.map(cartItem => (
-            <li key={cartItem.id}>
-              <div>
-                <strong>{cartItem.title}</strong> - ${cartItem.price} (
+const Cart = props => {
+  return (
+    <main className="cart">
+      {props.cartItems.length <= 0 && <p>There are no items in the cart!</p>}
+      <ul>
+        {props.cartItems.map(cartItem => (
+          <li key={cartItem.id}>
+            <div>
+              <strong>{cartItem.title}</strong> - ${cartItem.price} (
                   {cartItem.quantity})
                 </div>
-              <div>
-                <button
-                  onClick={this.props.removeProductFromCart.bind(null,
-                    cartItem.id
-                  )}
-                >
-                  Remove from Cart
+            <div>
+              <button
+                onClick={props.removeProductFromCart.bind(null,
+                  cartItem.id
+                )}
+              >
+                Remove from Cart
                   </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </main>
-    );
-  }
+            </div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
 }
 
 
