@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Products, Cart, MainNavigation } from './components';
+import { Products } from './components/products/Products';
+import { Cart } from './components/cart/Cart';
+import { MainNavigation } from './components/main-navigation/MainNavigation';
 import './App.css';
 
 class App extends Component {
