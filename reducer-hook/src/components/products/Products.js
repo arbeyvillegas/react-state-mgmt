@@ -1,47 +1,32 @@
-import React, { Component } from 'react';
-import { AddProduct } from './add-product/AddProduct';
+import React, { useState, useContext } from 'react';
+import AddProduct  from './add-product/AddProduct';
 import ProductList from './product-list/ProductList';
 
 import './Products.css';
 
-import { connect } from 'react-redux';
-import { addProduct } from '../../store/actions';
+import AppContext from '../../context/app-context';
 
-class Products extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.getInitialState();
-  }
+const Products = () => {
+  const [activeProductOption, setActiveProductOption] = useState('product-list');
+  const { products, addProductToCart, addProduct } = useContext(AppContext);
 
-  getInitialState() {
-    return {
-      activeProductOption: 'product-list'
-    }
-  }
+  const changeActiveProductOption = (option) => {
+    setActiveProductOption(option);
+  };
 
-  changeActiveProductOption(option) {
-    this.setState({ activeProductOption: option });
-  }
-
-  render() {
-    const component = this.state.activeProductOption === 'product-list' ?
-      <ProductList {...this.props} onNewProductClick={this.changeActiveProductOption.bind(this, 'add-product')} /> :
-      <AddProduct onCancel={this.changeActiveProductOption.bind(this, 'product-list')} onSave={this.props.addProduct}/>
-    return (
-      <React.Fragment>
-        {component}
-      </React.Fragment>
-    );
-  }
+  const component = activeProductOption === 'product-list' ?
+    <ProductList
+      onNewProductClick={changeActiveProductOption.bind(null, 'add-product')}
+      products={products}
+      addProductToCart={addProductToCart} /> :
+    <AddProduct
+      onCancel={changeActiveProductOption.bind(null, 'product-list')}
+      onSave={addProduct} />
+  return (
+    <React.Fragment>
+      {component}
+    </React.Fragment>
+  );
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addProduct: product => dispatch(addProduct(product))
-  }
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Products);
+export default Products;

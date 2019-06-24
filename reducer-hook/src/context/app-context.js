@@ -5,5 +5,8 @@ export default React.createContext({
   cartItems: [],
   activeOption: null,
   cartItemNumber: 0,
-  changeNavigationOption: option => {}
+  changeNavigationOption: option => {},
+  addProductToCart: product => {},
+  removeProductFromCart: productId => {},
+  addProduct: product => {}
 });

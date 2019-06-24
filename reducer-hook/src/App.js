@@ -4,13 +4,13 @@ import Cart from './components/cart/Cart';
 import MainNavigation from './components/main-navigation/MainNavigation';
 import './App.css';
 import AppContext from './context/app-context';
-import {shopReducer, initialState} from './store/reducers';
+import { shopReducer, initialState } from './store/reducers';
 
 import * as actions from './store/actions';
 
-import * as selectors from './store/selectors';
+import { getCartItemCount } from './store/selectors';
 
-const App = props => {
+const App = () => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
 
   const renderProducts = () => {
@@ -22,7 +22,7 @@ const App = props => {
   };
 
   let component;
-  if (props.activeOption === 'products') {
+  if (state.activeOption === 'products') {
     component = renderProducts();
   } else {
     component = renderCart();
@@ -30,9 +30,14 @@ const App = props => {
 
   return (
     <AppContext.Provider value={
-      {state, 
-        carItemNumber: selectors.getCartItemCount(state),
-        changeNavigationOption: option => dispatch(actions.changeNavigationOption(option))
+      {
+        ...state,
+        cartItemNumber: getCartItemCount(state),
+        changeNavigationOption: option => dispatch(actions.changeNavigationOption(option)),
+        addProductToCart: product => dispatch(actions.addProductToCart(product)),
+        removeProductFromCart: productId => dispatch(actions.removeProductFromCart(productId)),
+        addProduct: product => dispatch(actions.addProduct(product)),
+
       }
     }>
       <React.Fragment>
@@ -41,12 +46,6 @@ const App = props => {
       </React.Fragment>
     </AppContext.Provider>
   );
-};
+}
 
-const mapStateToProps = state => {
-  return {
-    activeOption: selectors.getActiveOption(state)
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;
