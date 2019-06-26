@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import './MainNavigation.css';
-import appContext from '../../context/app-context';
+import AppContext from '../../context/app-context';
 
 export const MainNavigation = () => {
-  const context = useContext(appContext);
+  const context = useContext(AppContext);
   return (
     <div className="main-navigation">
       <nav>

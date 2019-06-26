@@ -6,10 +6,10 @@ export const MainNavigation = props => (
     <nav>
       <ul>
         <li>
-          <button onClick={props.changeNavigationOption.bind(null, 'products')} className={props.activeOption === 'products' ? 'selected': null}>Products</button>
+          <button onClick={() => props.changeNavigationOption('products')} className={props.activeOption === 'products' ? 'selected': null}>Products</button>
         </li>
         <li>
-          <button onClick={props.changeNavigationOption.bind(null, 'cart')}  className={props.activeOption === 'cart' ? 'selected': null}>Cart ({props.cartItemNumber})</button>
+          <button onClick={() => props.changeNavigationOption('cart')}  className={props.activeOption === 'cart' ? 'selected': null}>Cart ({props.cartItemNumber})</button>
         </li>
       </ul>
     </nav>

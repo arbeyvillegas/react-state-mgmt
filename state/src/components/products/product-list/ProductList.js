@@ -14,7 +14,7 @@ export class ProductList extends Component {
               </div>
               <div>
                 <button
-                  onClick={this.props.addProductToCart.bind(null, product)}
+                  onClick={() => this.props.addProductToCart(product)}
                 >
                   Add to Cart
                   </button>

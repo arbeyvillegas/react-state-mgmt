@@ -16,14 +16,14 @@ export class Products extends Component {
     }
   }
 
-  changeActiveProductOption(option) {
+  changeActiveProductOption = (option) => {
     this.setState({ activeProductOption: option });
   }
 
   render() {
     const component = this.state.activeProductOption === 'product-list' ?
-      <ProductList {...this.props} onNewProductClick={this.changeActiveProductOption.bind(this, 'add-product')} /> :
-      <AddProduct onCancel={this.changeActiveProductOption.bind(this, 'product-list')} onSave={this.props.addProduct}/>
+      <ProductList {...this.props} onNewProductClick={() => this.changeActiveProductOption('add-product')} /> :
+      <AddProduct onCancel={() => this.changeActiveProductOption('product-list')} onSave={this.props.addProduct} />
     return (
       <React.Fragment>
         {component}
