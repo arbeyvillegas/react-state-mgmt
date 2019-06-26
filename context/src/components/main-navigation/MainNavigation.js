@@ -9,10 +9,10 @@ export const MainNavigation = () => {
       <nav>
         <ul>
           <li>
-            <button onClick={context.changeNavigationOption.bind(null, 'products')} className={context.activeOption === 'products' ? 'selected' : null}>Products</button>
+            <button onClick={() => context.changeNavigationOption('products')} className={context.activeOption === 'products' ? 'selected' : null}>Products</button>
           </li>
           <li>
-            <button onClick={context.changeNavigationOption.bind(null, 'cart')} className={context.activeOption === 'cart' ? 'selected' : null}>Cart ({context.cartItemNumber})</button>
+            <button onClick={() => context.changeNavigationOption('cart')} className={context.activeOption === 'cart' ? 'selected' : null}>Cart ({context.cartItemNumber})</button>
           </li>
         </ul>
       </nav>

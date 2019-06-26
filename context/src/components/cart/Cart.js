@@ -17,9 +17,7 @@ export class Cart extends Component {
                 </div>
               <div>
                 <button
-                  onClick={this.context.removeProductFromCart.bind(null,
-                    cartItem.id
-                  )}
+                  onClick={() => this.context.removeProductFromCart(cartItem.id)}
                 >
                   Remove from Cart
                   </button>

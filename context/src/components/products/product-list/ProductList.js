@@ -17,7 +17,7 @@ export class ProductList extends Component {
                   </div>
                   <div>
                     <button
-                      onClick={context.addProductToCart.bind(null, product)}
+                      onClick={() => context.addProductToCart(product)}
                     >
                       Add to Cart
                   </button>
