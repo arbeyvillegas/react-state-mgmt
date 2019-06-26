@@ -8,13 +8,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
-    // this.addProductToCart = this.addProductToCart.bind(this);
-    // this.removeProductFromCart = this.removeProductFromCart.bind(this);
-    // this.cartItemCount = this.cartItemCount.bind(this);
-    // this.renderCartPage = this.renderCart.bind(this);
-    // this.renderProductsPage = this.renderProducts.bind(this);
-    // this.changeNavigationOption = this.changeNavigationOption.bind(this);
-    // this.addProduct = this.addProduct.bind(this);
   }
 
   getInitialState() {
@@ -48,7 +41,7 @@ class App extends Component {
     this.setState({ cart: updatedCart });
   }
 
-  removeProductFromCart= (productId) => {
+  removeProductFromCart = (productId) => {
     const updatedCart = [...this.state.cart];
     const updatedItemIndex = updatedCart.findIndex(
       item => item.id === productId
@@ -90,7 +83,7 @@ class App extends Component {
   }
 
   renderProducts = () => {
-    return <Products products={this.state.products} addProductToCart={this.addProductToCart} addProduct={this.addProduct}/>;
+    return <Products products={this.state.products} addProductToCart={this.addProductToCart} addProduct={this.addProduct} />;
   }
 
   renderCart = () => {
